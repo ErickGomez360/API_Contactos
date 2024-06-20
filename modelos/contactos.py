@@ -6,4 +6,3 @@ class Contacto(db.Model):
     telefono = db.Column(db.String(20), nullable=False)
     correo = db.Column(db.String(100), nullable=True)
     
-    
