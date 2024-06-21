@@ -17,7 +17,9 @@ with app.app_context():
 def obtener_contactos():
     pagina = request.args.get('page', 1, type=int)
     tamano_pagina = request.args.get('page_size', 10, type=int)
-    contactos = Contacto.query.paginate(pagina, tamano_pagina, False).items
+    contactos_pag = Contacto.query.paginate(page=pagina, per_page=tamano_pagina, error_out=False)
+    contactos = contactos_pag.items
+    
     return jsonify(contactos_schema.dump(contactos))
 
 @app.route('/contacto/<int:id>', methods=['GET'])
